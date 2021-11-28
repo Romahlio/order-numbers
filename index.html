@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Numbers</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styles.css" media="screen" />
+  </head>
+  <body>
+    <div id="app">
+      <h1> Order List </h1>
+      
+      <div>
+        <label for="types">Type:</label>
+        <select v-model="filterType" name="types">
+          <option value="all">All</option>
+          <option value="delivery">Delivery</option>
+          <option value="pickup">Pickup</option>
+        </select>
+      </div>
+
+      <table>
+        <thead>
+          <th>order_id</th>
+          <th>order number</th>
+          <th>type</th>
+          <th>created</th>
+        </thead>
+        <tbody>
+          <tr v-for="order in getFilteredOrders()" :key="order.id">
+            <td>{{ order.id }}</td>
+            <td>{{ order.order_number }}</td>
+            <td>{{ order.type }}</td>
+            <td>{{ order.created }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script src="/app.js"></script>
+</html>
